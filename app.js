@@ -7,7 +7,18 @@ const app = express();
 
 const PORT = 3000;
 
-const messages = [
+const links = [
+  {
+    href: "/",
+    text: "Home",
+  },
+  {
+    href: "new",
+    text: "New Message",
+  },
+];
+
+let messages = [
   {
     text: "Hi, there!",
     user: "Nzube",
@@ -20,20 +31,35 @@ const messages = [
   },
 ];
 
+const title = "Mini Message Board";
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
-  res.render("index", { title: "Mini Message Board", messages: messages });
+  res.render("index", {
+    links: links,
+    title: title,
+    messages: messages,
+  });
+});
+
+app.get("/new", (req, res) => {
+  res.render("form", { links: links, title: title });
+});
+
+app.post("/new", (req, res) => {
+  messages.push({
+    user: req.body.name,
+    text: req.body.message,
+    added: new Date(),
+  });
+  res.redirect("/");
 });
 
 app.listen(PORT, (err) => {
   if (err) throw err;
   console.log(`App listening on port ${PORT}`);
 });
-
-// messages.map((message) => {
-//   console.log(message.user);
-//   console.log(message.text);
-//   console.log(message.added);
-// });

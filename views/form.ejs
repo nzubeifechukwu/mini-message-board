@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Message | <%= title %></title>
+  </head>
+  <body>
+    <nav><%- include('navbar', {links: links}) %></nav>
+    <h1>What message do you have for us?</h1>
+    <main>
+      <form action="/new" method="post">
+        <div>
+          <label for="name">Name</label
+          ><input type="text" name="name" id="name" />
+        </div>
+        <div>
+          <label for="message">Message</label
+          ><input type="text" name="message" id="message" />
+        </div>
+        <div><button type="submit">Submit</button></div>
+      </form>
+    </main>
+  </body>
+</html>
