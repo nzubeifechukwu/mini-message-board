@@ -51,6 +51,7 @@ app.get("/", async (req, res) => {
   const htmlContent = await ejs.renderFile(
     path.join(__dirname, "views/index.ejs")
   );
+  console.log(htmlContent);
   const $ = cheerio.load(htmlContent);
   console.log($);
 });
@@ -71,7 +72,7 @@ app.post("/new", (req, res) => {
 
 app.get("/open", (req, res) => {
   // console.log(req.body);
-  res.render("open", { links: links });
+  res.render("open", { links: links, title: title, messages: messages });
 });
 
 app.listen(PORT, (err) => {
