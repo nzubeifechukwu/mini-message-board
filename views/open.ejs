@@ -3,9 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title><%= message.user %>'s Message Details | <%=title %></title>
   </head>
   <body>
-    Open
+    <header><h1><%= message.user %>'s Message Details</h1></header>
+    <main>
+      <p><strong>Name:</strong> <%= message.user %></p>
+      <p><strong>Message:</strong> <%= message.text %></p>
+      <p><strong>Time sent:</strong> <%= message.added %></p>
+    </main>
   </body>
 </html>

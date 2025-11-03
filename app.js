@@ -1,7 +1,8 @@
 const express = require("express");
 const path = require("node:path");
-const cheerio = require("cheerio");
-const ejs = require("ejs");
+const CustomNotFoundError = require("./errors/CustomNotFoundError");
+// const cheerio = require("cheerio");
+// const ejs = require("ejs");
 
 const app = express();
 
@@ -20,13 +21,11 @@ const links = [
 
 let messages = [
   {
-    id: 0,
     text: "Hi, there!",
     user: "Nzube",
     added: new Date(),
   },
   {
-    id: 1,
     text: "Kedu?",
     user: "Ifechukwu",
     added: new Date(),
@@ -47,13 +46,6 @@ app.get("/", async (req, res) => {
     title: title,
     messages: messages,
   });
-
-  const htmlContent = await ejs.renderFile(
-    path.join(__dirname, "views/index.ejs")
-  );
-  console.log(htmlContent);
-  const $ = cheerio.load(htmlContent);
-  console.log($);
 });
 
 app.get("/new", (req, res) => {
@@ -70,9 +62,22 @@ app.post("/new", (req, res) => {
   res.redirect("/");
 });
 
-app.get("/open", (req, res) => {
-  // console.log(req.body);
-  res.render("open", { links: links, title: title, messages: messages });
+app.get("/:user/message", (req, res) => {
+  const { user } = { ...req.params };
+  let messageDetails;
+
+  messages.forEach((message) => {
+    if (user === message.user) {
+      messageDetails = message;
+    }
+  });
+  if (!messageDetails) throw new CustomNotFoundError(`user ${user} not found`);
+  res.render("open", { links: links, title: title, message: messageDetails });
+});
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.statusCode || 500).send(err.message);
 });
 
 app.listen(PORT, (err) => {

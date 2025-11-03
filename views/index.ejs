@@ -14,7 +14,7 @@
         <h2><%= message.user %></h2>
         <p><%= message.text %></p>
         <p><%= message.added %></p>
-        <a href="/open">Open</a>
+        <a href="/<%= message.user %>/message">Open</a>
       </article>
       <%}); %>
     </main>
