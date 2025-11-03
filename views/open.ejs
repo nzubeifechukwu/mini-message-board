@@ -6,11 +6,15 @@
     <title><%= message.user %>'s Message Details | <%=title %></title>
   </head>
   <body>
-    <header><h1><%= message.user %>'s Message Details</h1></header>
+    <header>
+      <nav><%- include('navbar', {links: links}) %></nav>
+      <h1><%= message.user %>'s Message Details</h1>
+    </header>
     <main>
       <p><strong>Name:</strong> <%= message.user %></p>
       <p><strong>Message:</strong> <%= message.text %></p>
       <p><strong>Time sent:</strong> <%= message.added %></p>
     </main>
+    <footer><%- include('footer') %></footer>
   </body>
 </html>

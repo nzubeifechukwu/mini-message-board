@@ -6,8 +6,10 @@
     <title>New Message | <%= title %></title>
   </head>
   <body>
-    <nav><%- include('navbar', {links: links}) %></nav>
-    <h1>What message do you have for us?</h1>
+    <header>
+      <nav><a href="/">Return Home</a></nav>
+      <h1>What message do you have for us?</h1>
+    </header>
     <main>
       <form action="/new" method="post">
         <div>
@@ -21,5 +23,6 @@
         <div><button type="submit">Submit</button></div>
       </form>
     </main>
+    <footer><%- include('footer') %></footer>
   </body>
 </html>

@@ -6,8 +6,10 @@
     <title>Home | <%= title %></title>
   </head>
   <body>
-    <nav><%- include('navbar', {links: links}) %></nav>
-    <header><h1><%= title %></h1></header>
+    <header>
+      <nav><%- include('navbar', {links: links}) %></nav>
+      <h1><%= title %></h1>
+    </header>
     <main>
       <% messages.forEach((message) => { %>
       <article>
@@ -18,5 +20,6 @@
       </article>
       <%}); %>
     </main>
+    <footer><%- include('footer') %></footer>
   </body>
 </html>

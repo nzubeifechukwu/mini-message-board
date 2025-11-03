@@ -1,38 +1,12 @@
 const express = require("express");
 const path = require("node:path");
+
 const CustomNotFoundError = require("./errors/CustomNotFoundError");
-// const cheerio = require("cheerio");
-// const ejs = require("ejs");
+const { links, title, messages } = require("./data/data");
 
 const app = express();
 
 const PORT = 3000;
-
-const links = [
-  {
-    href: "/",
-    text: "Home",
-  },
-  {
-    href: "new",
-    text: "New Message",
-  },
-];
-
-let messages = [
-  {
-    text: "Hi, there!",
-    user: "Nzube",
-    added: new Date(),
-  },
-  {
-    text: "Kedu?",
-    user: "Ifechukwu",
-    added: new Date(),
-  },
-];
-
-const title = "Mini Message Board";
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -49,12 +23,11 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/new", (req, res) => {
-  res.render("form", { links: links, title: title });
+  res.render("form", { title: title });
 });
 
 app.post("/new", (req, res) => {
   messages.push({
-    id: messages.length - 1,
     user: req.body.name,
     text: req.body.message,
     added: new Date(),
