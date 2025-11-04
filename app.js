@@ -5,11 +5,15 @@ const CustomNotFoundError = require("./errors/CustomNotFoundError");
 const { links, title, messages } = require("./data/data");
 
 const app = express();
-
 const PORT = 3000;
+const assetsPath = path.join(__dirname, "public");
 
+// Set view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+// Render CSS file
+app.use(express.static(assetsPath));
 
 // for the form template: to make sure you can get form inputs. See app.post("/new")
 app.use(express.urlencoded({ extended: true }));

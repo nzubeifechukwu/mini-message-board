@@ -4,23 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Message | <%= title %></title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header>
-      <nav><a href="/">Return Home</a></nav>
+      <nav><a href="/">Go Home</a></nav>
       <h1>What message do you have for us?</h1>
     </header>
     <main>
       <form action="/new" method="post">
-        <div>
+        <div class="input-div">
           <label for="name">Name *</label
           ><input type="text" name="name" id="name" required />
         </div>
-        <div>
+        <div class="input-div">
           <label for="message">Message *</label
           ><input type="text" name="message" id="message" required />
         </div>
-        <div><button type="submit">Submit</button></div>
+        <div class="button-div"><button type="submit">Submit</button></div>
       </form>
     </main>
     <footer><%- include('footer') %></footer>
