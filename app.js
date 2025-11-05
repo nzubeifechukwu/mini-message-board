@@ -5,7 +5,7 @@ const CustomNotFoundError = require("./errors/CustomNotFoundError");
 const { links, title, messages } = require("./data/data");
 
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 const assetsPath = path.join(__dirname, "public");
 
 // Set view engine
