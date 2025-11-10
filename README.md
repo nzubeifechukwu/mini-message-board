@@ -4,19 +4,19 @@ Mini message board is an Express (NodeJS) app that lets you add a message to a '
 
 See the [live demo](https://nzubeifechukwu-mini-message-board.up.railway.app/).
 
-## How to use the app
+## How to run the app locally
 
 - Clone the repo
 - On your local machine, start up the server by running `node app.js`
-- Visit http://localhost:3000/ on your browser
+- Visit http://localhost:8080/ on your browser
 - You can then click on the relevant links to add a **new message**, **open** a message, or return to the home page.
 
 ## Routes and methods
 
 The app is comprised of the following routes and HTTP methods:
 
-- **app.get("/")**: This is the root route. To navigate to this route, visit http://localhost:3000/, which takes you to the Home page.
-- **app.get("/new")**: This route takes you to the New Message page. To navigate to this route, click on the New Message nav link on Home (or message details) page or visit http://localhost:3000/new.
+- **app.get("/")**: This is the root route. To navigate to this route, visit http://localhost:8080/, which takes you to the Home page.
+- **app.get("/new")**: This route takes you to the New Message page. To navigate to this route, click on the New Message nav link on Home (or message details) page or visit http://localhost:8080/new.
 - **app.post("/new")**: This route sends a POST request when you click on the Submit button after filling out the form on the New Message page. It then redirects you to the Home page.
 - **app.get("/:user/message")**: This route shows the message details when you click on the Open link for each message.
 
