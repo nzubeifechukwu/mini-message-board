@@ -2,36 +2,24 @@ const pool = require("./pool");
 
 async function getAllMessages() {
   const { rows } = await pool.query("SELECT * FROM messages");
-  console.log(rows);
+//   console.log(rows);
   return rows;
 }
 
-module.exports = { getAllMessages };
+async function addNewMessagePost(username, message) {
+  await pool.query("INSERT into messages (username, message) VALUES ($1, $2)", [
+    username,
+    message,
+  ]);
+}
 
-// const links = [
-//   {
-//     href: "/",
-//     text: "Home",
-//   },
-//   {
-//     href: "/new",
-//     text: "New Message",
-//   },
-// ];
+async function viewMessageDetails(username) {
+  const { rows } = await pool.query(
+    "SELECT * FROM messages WHERE username=$1",
+    [username]
+  );
+//   console.log(rows);
+  return rows;
+}
 
-// let messages = [
-//   {
-//     text: "Hi, there!",
-//     user: "Nzube",
-//     added: new Date(),
-//   },
-//   {
-//     text: "Kedu?",
-//     user: "Ifechukwu",
-//     added: new Date(),
-//   },
-// ];
-
-// const title = "Mini Message Board";
-
-// module.exports = { links, messages, title };
+module.exports = { getAllMessages, addNewMessagePost, viewMessageDetails };

@@ -5,7 +5,11 @@ require("dotenv").config();
 
 const CustomNotFoundError = require("./errors/CustomNotFoundError");
 const { links, title, messages } = require("./data/data");
-const { getAllMessages } = require("./db/queries");
+const {
+  getAllMessages,
+  addNewMessagePost,
+  viewMessageDetails,
+} = require("./db/queries");
 
 const app = express();
 const PORT = 8080;
@@ -33,26 +37,28 @@ app.get("/new", (req, res) => {
   res.render("form", { title: title });
 });
 
-app.post("/new", (req, res) => {
-  messages.push({
-    user: req.body.name,
-    text: req.body.message,
-    added: new Date(),
-  });
+app.post("/new", async (req, res) => {
+  await addNewMessagePost(req.body.name, req.body.message);
   res.redirect("/");
 });
 
-app.get("/:user/message", (req, res) => {
-  const { user } = { ...req.params };
-  let messageDetails;
+app.get("/:user/message", async (req, res) => {
+  const message = await viewMessageDetails(req.params.user);
+  console.log(message);
+  // const { user } = { ...req.params };
+  // let messageDetails;
 
-  messages.forEach((message) => {
-    if (user === message.user) {
-      messageDetails = message;
-    }
+  // messages.forEach((message) => {
+  //   if (user === message.user) {
+  //     messageDetails = message;
+  //   }
+  // });
+  // if (!messageDetails) throw new CustomNotFoundError(`user ${user} not found`);
+  res.render("open", {
+    links: links,
+    title: title,
+    message: message[0],
   });
-  if (!messageDetails) throw new CustomNotFoundError(`user ${user} not found`);
-  res.render("open", { links: links, title: title, message: messageDetails });
 });
 
 app.use((err, req, res, next) => {
