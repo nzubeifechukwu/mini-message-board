@@ -25,7 +25,7 @@ app.get("/", async (req, res) => {
   res.render("index", {
     links: links,
     title: title,
-    messages: getAllMessages(),
+    messages: await getAllMessages(),
   });
 });
 
