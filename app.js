@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("node:path");
 
+require("dotenv").config();
+
 const CustomNotFoundError = require("./errors/CustomNotFoundError");
 const { links, title, messages } = require("./data/data");
 
