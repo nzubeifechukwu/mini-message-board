@@ -11,7 +11,16 @@
       <nav><%- include('navbar', {links: links}) %></nav>
       <h1><%= title %></h1>
     </header>
-    <main><%= messages[0].username %></main>
+    <main>
+      <% messages.forEach((message) => { %>
+      <article>
+        <h2><%= message.user %></h2>
+        <p><%= message.text %></p>
+        <p><%= message.added %></p>
+        <a href="/<%= message.user %>/message">Open</a>
+      </article>
+      <%}); %>
+    </main>
     <footer><%- include('footer') %></footer>
   </body>
 </html>
