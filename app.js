@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const CustomNotFoundError = require("./errors/CustomNotFoundError");
 const { links, title, messages } = require("./data/data");
+const { getAllMessages } = require("./db/queries");
 
 const app = express();
 const PORT = 8080;
@@ -24,7 +25,7 @@ app.get("/", async (req, res) => {
   res.render("index", {
     links: links,
     title: title,
-    messages: messages,
+    messages: getAllMessages(),
   });
 });
 
