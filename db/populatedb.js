@@ -11,12 +11,12 @@ CREATE TABLE IF NOT EXISTS messages (
   message VARCHAR ( 255 ),
   date_added TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
-
-INSERT INTO messages (username, message)
-VALUES
-  ('nzube', 'Hello'),
-  ('arinze', 'Kee the way');
 `;
+
+// INSERT INTO messages (username, message)
+// VALUES
+//   ('nzube', 'Hello'),
+//   ('arinze', 'Kee the way');
 
 async function main() {
   console.log("seeding...");

@@ -36,6 +36,10 @@ main {
   margin: 2rem 60px 60px;
 }
 
+main p {
+  text-align: center;
+}
+
 footer {
   padding-bottom: 20px;
 }

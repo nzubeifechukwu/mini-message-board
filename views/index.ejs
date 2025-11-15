@@ -12,14 +12,16 @@
       <h1><%= title %></h1>
     </header>
     <main>
-      <% messages.forEach((message) => { %>
+      <% if (messages.length) { %> <% messages.forEach((message) => { %>
       <article>
         <h2><%= message.username %></h2>
         <p><%= message.message %></p>
         <p><%= message.date_added %></p>
-        <a href="/<%= message.username %>/message">Open</a>
+        <a href="/<%= message.user %>/message">Open</a>
       </article>
-      <%}); %>
+      <%});%> <%} else { %>
+      <p>No messages found. Click on New Message to add a message</p>
+      <%} %> %>
     </main>
     <footer><%- include('footer') %></footer>
   </body>

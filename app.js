@@ -44,16 +44,11 @@ app.post("/new", async (req, res) => {
 
 app.get("/:user/message", async (req, res) => {
   const message = await viewMessageDetails(req.params.user);
-  console.log(message);
-  // const { user } = { ...req.params };
-  // let messageDetails;
 
-  // messages.forEach((message) => {
-  //   if (user === message.user) {
-  //     messageDetails = message;
-  //   }
-  // });
-  // if (!messageDetails) throw new CustomNotFoundError(`user ${user} not found`);
+  if (!message.length) {
+    throw new CustomNotFoundError(`user ${req.params.user} not found`);
+  }
+
   res.render("open", {
     links: links,
     title: title,
