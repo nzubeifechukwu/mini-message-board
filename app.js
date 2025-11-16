@@ -4,7 +4,7 @@ const path = require("node:path");
 require("dotenv").config();
 
 const CustomNotFoundError = require("./errors/CustomNotFoundError");
-const { links, title, messages } = require("./data/data");
+const { links, title } = require("./data/data");
 const {
   getAllMessages,
   addNewMessagePost,

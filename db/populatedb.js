@@ -13,11 +13,6 @@ CREATE TABLE IF NOT EXISTS messages (
 );
 `;
 
-// INSERT INTO messages (username, message)
-// VALUES
-//   ('nzube', 'Hello'),
-//   ('arinze', 'Kee the way');
-
 async function main() {
   console.log("seeding...");
 

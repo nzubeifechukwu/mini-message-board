@@ -36,7 +36,7 @@ main {
   margin: 2rem 60px 60px;
 }
 
-main p {
+main p.no-message {
   text-align: center;
 }
 
