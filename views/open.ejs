@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= message.username %>'s Message Details | <%=title %></title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <header>
@@ -12,9 +12,11 @@
       <h1><%= message.username %>'s Message Details</h1>
     </header>
     <main>
-      <p><strong>Name:</strong> <%= message.username %></p>
-      <p><strong>Message:</strong> <%= message.message %></p>
-      <p><strong>Time sent:</strong> <%= message.date_added %></p>
+      <article>
+        <p><strong>Name:</strong> <%= message.username %></p>
+        <p><strong>Message:</strong> <%= message.message %></p>
+        <p><strong>Time sent:</strong> <%= message.date_added %></p>
+      </article>
     </main>
     <footer><%- include('footer') %></footer>
   </body>

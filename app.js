@@ -1,15 +1,13 @@
 const express = require("express");
 const path = require("node:path");
+const {
+  getMessages,
+  addNewMessageGet,
+  addNewMessagePost,
+  getMessageDetails,
+} = require("./controllers/messageControllers");
 
 require("dotenv").config();
-
-const CustomNotFoundError = require("./errors/CustomNotFoundError");
-const { links, title } = require("./data/data");
-const {
-  getAllMessages,
-  addNewMessagePost,
-  viewMessageDetails,
-} = require("./db/queries");
 
 const app = express();
 const PORT = 8080;
@@ -25,36 +23,13 @@ app.use(express.static(assetsPath));
 // for the form template: to make sure you can get form inputs. See app.post("/new")
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", async (req, res) => {
-  res.render("index", {
-    links: links,
-    title: title,
-    messages: await getAllMessages(),
-  });
-});
+app.get("/", getMessages);
 
-app.get("/new", (req, res) => {
-  res.render("form", { title: title });
-});
+app.get("/new", addNewMessageGet);
 
-app.post("/new", async (req, res) => {
-  await addNewMessagePost(req.body.name, req.body.message);
-  res.redirect("/");
-});
+app.post("/new", addNewMessagePost);
 
-app.get("/:user/message", async (req, res) => {
-  const message = await viewMessageDetails(req.params.user);
-
-  if (!message.length) {
-    throw new CustomNotFoundError(`user ${req.params.user} not found`);
-  }
-
-  res.render("open", {
-    links: links,
-    title: title,
-    message: message[0],
-  });
-});
+app.get("/:user/message", getMessageDetails);
 
 app.use((err, req, res, next) => {
   console.error(err);

@@ -5,7 +5,7 @@ async function getAllMessages() {
   return rows;
 }
 
-async function addNewMessagePost(username, message) {
+async function addNewMessage(username, message) {
   await pool.query("INSERT into messages (username, message) VALUES ($1, $2)", [
     username,
     message,
@@ -20,4 +20,4 @@ async function viewMessageDetails(username) {
   return rows;
 }
 
-module.exports = { getAllMessages, addNewMessagePost, viewMessageDetails };
+module.exports = { getAllMessages, addNewMessage, viewMessageDetails };
