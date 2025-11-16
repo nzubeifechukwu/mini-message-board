@@ -5,6 +5,7 @@ const {
   addNewMessageGet,
   addNewMessagePost,
   getMessageDetails,
+  clearMessages,
 } = require("./controllers/messageControllers");
 
 require("dotenv").config();
@@ -24,12 +25,10 @@ app.use(express.static(assetsPath));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", getMessages);
-
 app.get("/new", addNewMessageGet);
-
 app.post("/new", addNewMessagePost);
-
 app.get("/:user/message", getMessageDetails);
+app.post("/delete", clearMessages);
 
 app.use((err, req, res, next) => {
   console.error(err);

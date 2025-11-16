@@ -20,4 +20,13 @@ async function viewMessageDetails(username) {
   return rows;
 }
 
-module.exports = { getAllMessages, addNewMessage, viewMessageDetails };
+async function deleteAllMessages() {
+  await pool.query("TRUNCATE TABLE messages");
+}
+
+module.exports = {
+  getAllMessages,
+  addNewMessage,
+  viewMessageDetails,
+  deleteAllMessages,
+};

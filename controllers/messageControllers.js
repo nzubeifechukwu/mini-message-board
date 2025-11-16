@@ -36,9 +36,15 @@ async function getMessageDetails(req, res) {
   });
 }
 
+async function clearMessages(req, res) {
+  await db.deleteAllMessages();
+  res.redirect("/");
+}
+
 module.exports = {
   getMessages,
   addNewMessageGet,
   addNewMessagePost,
   getMessageDetails,
+  clearMessages,
 };
