@@ -11,7 +11,7 @@
       <nav><a href="/">Go Home</a></nav>
       <h1>What message do you have for us?</h1>
     </header>
-    <%- include("partials/errors.ejs") %>
+    <%- include('partials/errors') %>
     <main>
       <form action="/new" method="post">
         <div class="input-div">
@@ -25,6 +25,6 @@
         <div class="button-div"><button type="submit">Submit</button></div>
       </form>
     </main>
-    <footer><%- include('footer') %></footer>
+    <footer><%- include('partials/footer') %></footer>
   </body>
 </html>

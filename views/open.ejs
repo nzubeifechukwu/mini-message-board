@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <nav><%- include('navbar', {links: links}) %></nav>
+      <nav><%- include('partials/navbar', {links: links}) %></nav>
       <h1><%= message.username %>'s Message Details</h1>
     </header>
     <main>
@@ -18,6 +18,6 @@
         <p><strong>Time sent:</strong> <%= message.date_added %></p>
       </article>
     </main>
-    <footer><%- include('footer') %></footer>
+    <footer><%- include('partials/footer') %></footer>
   </body>
 </html>
