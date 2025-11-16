@@ -1,6 +1,6 @@
 # Mini Message Board
 
-Mini message board is an Express (NodeJS) app that lets you add a message to a 'board'. You can also view the details of each message. Message details include the name of the user adding the message, the message itself, and the time it was added.
+Mini message board is an Express (NodeJS) app that lets you add a message to a 'board'. You can also view the details of each message or clear all messages. Message details include the name of the user adding the message, the message itself, and the time it was added.
 
 See the [live demo](https://nzubeifechukwu-mini-message-board.up.railway.app/).
 
@@ -9,7 +9,7 @@ See the [live demo](https://nzubeifechukwu-mini-message-board.up.railway.app/).
 - Clone the repo
 - On your local machine, start up the server by running `node app.js`
 - Visit http://localhost:8080/ on your browser
-- You can then click on the relevant links to add a **new message**, **open** a message, or return to the home page.
+- You can then click on the relevant links to add a **new message**, **clear all messages**, **open** a message, or return to the home page.
 
 ## Routes and methods
 
@@ -19,11 +19,15 @@ The app is comprised of the following routes and HTTP methods:
 - **app.get("/new")**: This route takes you to the New Message page. To navigate to this route, click on the New Message nav link on Home (or message details) page or visit http://localhost:8080/new.
 - **app.post("/new")**: This route sends a POST request when you click on the Submit button after filling out the form on the New Message page. It then redirects you to the Home page.
 - **app.get("/:user/message")**: This route shows the message details when you click on the Open link for each message.
+- **app.post("/delete")**: This route sends a POST request to clear all messages when you click on the Clear All Messages button. It then redirects you to the Home page.
 
 ## Tools/languages/frameworks
 
-- ExpressJS (NodeJS)
-- EJS
+- **ExpressJS (NodeJS)**
+- **PostgreSQL (SQL)**
+- **pg (node-postgres)**, for interfacing with PostgreSQL databases.
+- **EJS (Embedded JavaScript)**
+- **express-validator**, for validating and sanitizing HTML inputs.
 
 ## Inspiration
 
