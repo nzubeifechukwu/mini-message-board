@@ -17,7 +17,7 @@
         <h2><%= message.username %></h2>
         <p><%= message.message %></p>
         <p><%= message.date_added %></p>
-        <a href="/<%= message.user %>/message">Open</a>
+        <a href="/<%= message.username %>/message">Open</a>
       </article>
       <%});%> <%} else { %>
       <p class="no-message">No messages found. Click on New Message to add a message</p>
