@@ -1,6 +1,8 @@
 const db = require("../db/queries");
 const CustomNotFoundError = require("../errors/CustomNotFoundError");
 const { links, title } = require("../data/data");
+const { validateUser } = require("../inputValidators/inputValidators");
+const { validationResult, matchedData } = require("express-validator");
 
 async function getMessages(req, res) {
   const messages = await db.getAllMessages();
@@ -15,11 +17,21 @@ function addNewMessageGet(req, res) {
   res.render("form", { title: title });
 }
 
-async function addNewMessagePost(req, res) {
-  const { name, message } = req.body;
-  await db.addNewMessage(name, message);
-  res.redirect("/");
-}
+const addNewMessagePost = [
+  validateUser,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("form", {
+        title: title,
+        errors: errors.array(),
+      });
+    }
+    const { name, message } = matchedData(req);
+    await db.addNewMessage(name, message);
+    res.redirect("/");
+  },
+];
 
 async function getMessageDetails(req, res) {
   const { user } = req.params;
